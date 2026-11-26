@@ -1,0 +1,23 @@
+{
+  "preprocess_videos_matched": 311,
+  "smoke_passed": true,
+  "smoke_result": {
+    "run": "smoke_1795731251867007803",
+    "split": "validation",
+    "seed": 0,
+    "commit_id": "9fb716a8125d35fcb442d1df7ac53d7ab287b0c3",
+    "ADE": 21.070844173431396,
+    "FDE": 40.14639949798584,
+    "F1": 0.0,
+    "Accuracy": 1.0,
+    "PR_AUC": 0.0,
+    "n_samples": 4,
+    "checkpoint_sha256": "81b92cf03b22d483971538f3ad3fc4ff913b77d693f38ee0f43e20dfc4777d07"
+  },
+  "D1_seed0_reference_passed": true,
+  "D2_reproduced": true,
+  "model_and_raft_benchmark_passed": true,
+  "benchmark_reference_note": "Historical 3-model rotating measurement differs from single-model publication check; do not replace historical user-authored numbers. Public RAFT uses10warmup/100samples, historical5/50.",
+  "cuda_physically_tested": false,
+  "model_runtime_unchanged_in_followup": true
+}

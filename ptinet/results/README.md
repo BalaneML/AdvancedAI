@@ -5,3 +5,5 @@ baseline.csv は公開版の評価コードを実行した D1 validation の値�
 corrected_d1_d2.csv は既存の corrected 診断集計。D2 は LCF OFF で、ADE12.179165/FDE23.825284/F1=0。reproduction は修正前 test、diagnostics は修正前 validation の意図診断。preliminary profiler/masking/FLOPs/noise は除外した。
 
 benchmark_reference.csv は過去の同一PCでの規定プロトコル測定。benchmark_publication.csv は今回の公開版での確認であり、GPU クロック等で絶対時間が変わり得る。比較には同じPC・設定・手順を使用する。
+
+既存source_auditのSHAはローカル原本を指す。配布した履歴snapshot/scriptは絶対パスを伏せており、そのファイル自身のhashとは区別する。公開版のgit blob/評価code IDは今回の記録を使用する。
