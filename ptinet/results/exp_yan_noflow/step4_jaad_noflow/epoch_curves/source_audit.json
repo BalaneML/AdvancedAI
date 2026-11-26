@@ -1,0 +1,47 @@
+{
+  "D1": {
+    "full_precision_source": "LOCAL_EXPERIMENT/runs/jaad_corr_lcf_out15_s0/data_final0.001_512.csv",
+    "sha256": "7acfc7646a62f5661c25e27bacc007884fcde92906b0d1cb7b0cc00facb9634d",
+    "log_source": "LOCAL_EXPERIMENT/logs/jaad_corr_lcf_out15_s0.log",
+    "log_sha256": "4684d1bda2475a71390e942fa819461e64d698fba5d75dbc75bcf255fe8dc531",
+    "epochs": 22,
+    "max_difference_vs_rounded_log": 4.802398062508928e-05
+  },
+  "noflow": {
+    "full_precision_source": "LOCAL_EXPERIMENT/runs/jaad_corr_noflow_out15_s0/data_final0.001_512.csv",
+    "sha256": "08a2c692459e8721c0c7bbf9b31d56cc992257224e15140c3e3427f58d6a5076",
+    "log_source": "LOCAL_EXPERIMENT/reports/flow_study/step4_jaad_noflow/train_job.log",
+    "log_sha256": "52df39be15fc1110dbf7e09049748ed76128b46777d00efc8a2f732cc5995dae",
+    "epochs": 22,
+    "max_difference_vs_rounded_log": 4.939973509010542e-05
+  },
+  "comparability": {
+    "D1_seed": 0,
+    "noflow_seed": 0,
+    "both_validation_eval": true,
+    "both_validation_no_grad": true,
+    "both_training_resume_train_after_val": true,
+    "D1_code_snapshot": "15221374aa065429d360c139b806cf79b34b49bb",
+    "noflow_training_commit": "fa962404d7f18bee4b47084d0b8ffb4efcc8dfa0",
+    "D1_snapshot_matches_saved_training_source_sha256": true,
+    "same_critical_settings": [
+      "dataset",
+      "input",
+      "output",
+      "stride",
+      "skip",
+      "batch_size",
+      "n_epochs",
+      "lr",
+      "hidden_size",
+      "use_image",
+      "image_network",
+      "use_attribute",
+      "loader_workers",
+      "pin_memory",
+      "from_file"
+    ],
+    "intentional_difference": "use_opticalflow True vs False",
+    "D1_trained_before_git": true
+  }
+}

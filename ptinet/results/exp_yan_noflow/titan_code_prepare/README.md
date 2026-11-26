@@ -1,0 +1,5 @@
+# TITAN: コード準備だけ
+
+実データの結果・表・画像・checkpoint・ダウンロードリンクを含まない。LCFはaction_s/communication/ageの3列。JAADの10列scene/3列static属性を渡さない。公開converterとloaderをvendor/に保存した。関連scriptは当時の制御コードの控えでLOCAL_EXPERIMENTは未配布環境を示す。JAAD専用公開runnerからは実行しない。
+
+実データ期限切れで第7/8段階未実施、第8.5段階は取消。TITANは再申請中。過去CPU人工データのインタフェース確認は実TITANの精度検証ではなく、その生成データ/重み/数値を収録しない。実データ取得後にパスを設定しtrain/val全画像とlabel/LCFを監査し、この準備コードを別途統合してから実行する。

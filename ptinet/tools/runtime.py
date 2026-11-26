@@ -5,7 +5,7 @@ import os,json,csv,hashlib,subprocess
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
-EXPERIMENTAL_MODALITIES=False
+EXPERIMENTAL_MODALITIES=True
 FIELDS=['run','split','seed','commit_id','ADE','FDE','F1','Accuracy','PR_AUC','n_samples','checkpoint_sha256']
 
 def version():

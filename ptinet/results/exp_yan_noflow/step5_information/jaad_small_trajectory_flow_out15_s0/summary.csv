@@ -1,0 +1,2 @@
+val_samples,ADE,FDE,F1,Accuracy,PR_AUC,positive_ratio,max_probability,condition,commit_id,checkpoint,checkpoint_sha256,seed
+616,12.805127091609039,25.046812010275854,0,0.88311688311688308,0.094787159351291339,0.11688311688311688,0.04849020391702652,base,fa962404d7f18bee4b47084d0b8ffb4efcc8dfa0,LOCAL_EXPERIMENT/runs/jaad_small_trajectory_flow_out15_s0/model_best0.001_512.pkl,1108505472b3780e35153a37c1aa0377bb2817e0c67ee12510f1c4cb526f56fc,0

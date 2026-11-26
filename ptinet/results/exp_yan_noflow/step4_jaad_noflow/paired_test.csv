@@ -1,0 +1,2 @@
+N,mean_ADE_difference_noflow_minus_D1,wilcoxon_p_two_sided,paired_bootstrap_CI95_low,paired_bootstrap_CI95_high,video_cluster_bootstrap_CI95_low,video_cluster_bootstrap_CI95_high,bootstrap_iterations,seed,commit_id
+616,-0.51685698059472174,0.00072408226661107992,-0.94627694325739298,-0.081852142019318341,-1.0033645656650769,0.028191264085402377,10000,0,fa962404d7f18bee4b47084d0b8ffb4efcc8dfa0

@@ -143,9 +143,9 @@ class PTINet(nn.Module):
                 zim = torch.mean(zim,axis=1)
         if self.args.use_opticalflow==True:
             batch_size_op, seq_len_op, c_op, h_op, w_op = optical.size()
-            optical = optical.view(batch_size * seq_len_op, c_op, h_op, w_op)
+            optical = optical.view(batch_size_op * seq_len_op, c_op, h_op, w_op)
             op_feats = self.resnet(optical)
-            op_feats = op_feats.view(batch_size, seq_len_op, -1)
+            op_feats = op_feats.view(batch_size_op, seq_len_op, -1)
 
             _, (himg_op, cimg_op) = self.op_encoder(op_feats)
             himg_op = himg_op[-1,:,:].squeeze(0)

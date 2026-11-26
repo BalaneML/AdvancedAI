@@ -10,3 +10,5 @@
 ## PTINet
 
 共通BaselineのQuickstart・評価方法は [ptinet/README.md](ptinet/README.md) を参照。mainの変更は従来どおりPRとメンバー審査を経る。
+
+光フロー除去の実験・結果は [ptinet/README_exp_yan_noflow.md](ptinet/README_exp_yan_noflow.md) を参照。

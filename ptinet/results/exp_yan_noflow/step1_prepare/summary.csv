@@ -1,0 +1,9 @@
+combination,setting,image,flow,resize_width,resize_height,train_videos,train_series,val_series,epochs,train_batches,val_batches,checkpoint_saved,disabled_file_reads,commit_id
+full_image1_flow1,full,True,True,240,426,242,2006,616,1,2,2,True,0,fa962404d7f18bee4b47084d0b8ffb4efcc8dfa0
+full_image1_flow0,full,True,False,240,426,242,2006,616,1,2,2,True,0,fa962404d7f18bee4b47084d0b8ffb4efcc8dfa0
+full_image0_flow1,full,False,True,240,426,242,2006,616,1,2,2,True,0,fa962404d7f18bee4b47084d0b8ffb4efcc8dfa0
+full_image0_flow0,full,False,False,240,426,242,2006,616,1,2,2,True,0,fa962404d7f18bee4b47084d0b8ffb4efcc8dfa0
+small_image1_flow1,small,True,True,120,213,61,353,616,1,2,2,True,0,fa962404d7f18bee4b47084d0b8ffb4efcc8dfa0
+small_image1_flow0,small,True,False,120,213,61,353,616,1,2,2,True,0,fa962404d7f18bee4b47084d0b8ffb4efcc8dfa0
+small_image0_flow1,small,False,True,120,213,61,353,616,1,2,2,True,0,fa962404d7f18bee4b47084d0b8ffb4efcc8dfa0
+small_image0_flow0,small,False,False,120,213,61,353,616,1,2,2,True,0,fa962404d7f18bee4b47084d0b8ffb4efcc8dfa0

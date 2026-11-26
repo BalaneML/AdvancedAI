@@ -1,0 +1,11 @@
+# Corrected D1・場面別マスキング
+
+コマンド: `python LOCAL_EXPERIMENT/scripts/flow_study/masking.py`。所要時間484.3秒。各条件seed0をモデル生成前にreset、batch2、workers8、全val616系列。各条件全forward再計算、マスキングは学習済分岐を残したまま入力を0にする操作で、分岐を除く再学習と区別する。
+
+ADE/FDEは中心のpixel距離（原utils.speed2posのclipを保持）。歩行者の動静は観測期間のbbox中心の始点終点距離>5pixelをmovingとするため、カメラ運動や追跡ノイズも含む画像座標上の指標であり真の世界座標速度ではない。
+
+自車はJAAD annotations_vehicleの各観測frameに対応するactionを利用。moving_fast/moving_slow/accelerating/deceleratingが過半数ならmoving、stoppedが過半数ならstopped、それ以外はunknown_or_mixedとして除外せず別群に残す。横断labelはfuture cross_label。群は重複するため各行を足し上げない。
+
+過去D1 valとの最大逐系列ADE/FDE差は0。D1訓練時はgit導入前であり、訓練commitを遡及して捏造しない。本表commitは今回評価のコード。
+
+Commit ID: `fa962404d7f18bee4b47084d0b8ffb4efcc8dfa0`。評価はvalidationのみ。testは読み込み・評価しない。

@@ -1,0 +1,126 @@
+diff --git a/datasets/jaad.py b/datasets/jaad.py
+index df99288..3445404 100644
+--- a/datasets/jaad.py
++++ b/datasets/jaad.py
+@@ -9,6 +9,7 @@ from PIL import Image, ImageDraw
+ import cv2
+ import utils
+ import copy
++import math
+ from concurrent.futures import ThreadPoolExecutor
+ from torchvision import transforms
+ class JAAD(torch.utils.data.Dataset):
+@@ -26,13 +27,18 @@ class JAAD(torch.utils.data.Dataset):
+                 use_images=False,
+                 use_attribute=False,
+                 use_opticalflow=False,
+-                image_resize=[240, 426]
++                image_resize=[240, 426],
++                train_video_fraction=1.0
+                 ):
+         
+         print('*'*30)
+         print('Loading JAAD', dtype, 'data ...')
+ 
+         self.data_dir = data_dir
++        if not 0 < train_video_fraction <= 1:
++            raise ValueError('train_video_fraction must be in (0, 1]')
++        if from_file and dtype == 'train' and train_video_fraction < 1:
++            raise ValueError('Subset requires fresh CSV construction, from_file=False')
+         self.out_dir = out_dir
+         self.input = input
+         self.output = output
+@@ -154,7 +160,11 @@ class JAAD(torch.utils.data.Dataset):
+             print('Reading data files ...')
+             df = pd.DataFrame()
+             new_index=0
+-            for file in glob.glob(os.path.join(data_dir, dtype,"*")):
++            source_files = glob.glob(os.path.join(data_dir, dtype, '*'))
++            if dtype == 'train' and train_video_fraction < 1:
++                source_files = sorted(source_files)[:math.ceil(len(source_files) * train_video_fraction)]
++            self.source_files = list(source_files)
++            for file in source_files:
+                 temp = pd.read_csv(file)
+                 if not temp.empty:
+                     temp['file'] = [file for t in range(temp.shape[0])]
+diff --git a/datasets/titan.py b/datasets/titan.py
+index ceb4dd1..d16e7dd 100644
+--- a/datasets/titan.py
++++ b/datasets/titan.py
+@@ -11,6 +11,7 @@ import utils
+ from concurrent.futures import ThreadPoolExecutor
+ from torchvision import transforms
+ import copy
++import math
+ 
+ class TITAN(torch.utils.data.Dataset):
+     def __init__(self, 
+@@ -27,13 +28,18 @@ class TITAN(torch.utils.data.Dataset):
+                 use_images=False,
+                 use_attribute=False,
+                 use_opticalflow=False,
+-                image_resize=[240, 426]
++                image_resize=[240, 426],
++                train_video_fraction=1.0
+                 ):
+         
+         print('*'*30)
+         print('Loading Titan', dtype, 'data ...')
+ 
+         self.data_dir = data_dir
++        if not 0 < train_video_fraction <= 1:
++            raise ValueError('train_video_fraction must be in (0, 1]')
++        if from_file and dtype == 'train' and train_video_fraction < 1:
++            raise ValueError('Subset requires fresh CSV construction, from_file=False')
+         self.out_dir = out_dir
+         self.input = input
+         self.output = output
+@@ -67,7 +73,11 @@ class TITAN(torch.utils.data.Dataset):
+             print('Reading data files ...')
+             df = pd.DataFrame()
+             new_index=0
+-            for file in glob.glob(os.path.join(data_dir, dtype,"*")):
++            source_files = glob.glob(os.path.join(data_dir, dtype, '*'))
++            if dtype == 'train' and train_video_fraction < 1:
++                source_files = sorted(source_files)[:math.ceil(len(source_files) * train_video_fraction)]
++            self.source_files = list(source_files)
++            for file in source_files:
+                 temp = pd.read_csv(file)
+                 if not temp.empty:
+                     temp['file'] = [file for t in range(temp.shape[0])]
+diff --git a/train.py b/train.py
+index 1fc7215..bb8e5de 100644
+--- a/train.py
++++ b/train.py
+@@ -83,6 +83,10 @@ def parse_args():
+     parser.add_argument('--device', type=str, default='cuda')
+     parser.add_argument('--batch_size', type=int, default=4)
+     parser.add_argument('--n_epochs', type=int, default=100)
++    parser.add_argument('--seed', type=int, default=0)
++    parser.add_argument('--train_video_fraction', type=float, default=1.0)
++    parser.add_argument('--image_resize_width', type=int, default=240)
++    parser.add_argument('--image_resize_height', type=int, default=426)
+     parser.add_argument('--skip_test', type=str2bool, default=True,
+                         help='Skip post-training test construction and evaluation')
+     parser.add_argument('--lr', type=float, default=1e-5)
+@@ -123,7 +127,7 @@ def train(args, train, val):
+     # Now: use DDP only when launched with torchrun on CUDA; otherwise plain single-process on args.device (CPU OK).
+     DEV = torch.device(args.device)
+     distributed = DEV.type == 'cuda' and 'LOCAL_RANK' in os.environ
+-    torch.manual_seed(0)
++    torch.manual_seed(args.seed)
+     if distributed:
+         dist.init_process_group(backend='nccl')
+         local_rank=int(os.environ['LOCAL_RANK'])
+@@ -467,7 +471,10 @@ if __name__ == '__main__':
+                 save=args.save,
+                 use_images=args.use_image,
+                 use_attribute=args.use_attribute,
+-                use_opticalflow=args.use_opticalflow
++                use_opticalflow=args.use_opticalflow,
++                **({'image_resize': [args.image_resize_width, args.image_resize_height],
++                    'train_video_fraction': args.train_video_fraction}
++                   if args.dataset in ('jaad', 'titan') else {})
+                 )
+ 
+     os.makedirs(os.path.join(args.out_dir, args.log_name), exist_ok=True)

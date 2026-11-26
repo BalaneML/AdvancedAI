@@ -456,8 +456,6 @@ if __name__ == '__main__':
     # [patch] fall back to CPU when CUDA is not available
     if str(args.device).startswith('cuda') and not torch.cuda.is_available():
         args.device = 'cpu'
-    if not args.use_image or not args.use_opticalflow:
-        raise ValueError('Baseline requires both image and flow; use the experimental branch for ablations')
     print(args)
 
     def make_split(dtype):

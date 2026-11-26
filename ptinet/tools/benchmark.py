@@ -16,7 +16,7 @@ def main():
     t=r.inputs(b,cfg);torch.cuda.synchronize();start=time.perf_counter();outputs=r.forward(net,t);torch.cuda.synchronize()
     if index>=10:times.append((time.perf_counter()-start)*1000)
   model_ms=float(np.median(times));raft_ms=0.
-  if args.include_raft:
+  if args.include_raft and cfg['use_opticalflow']:
    pairs=[]
    for paths in data.data.imagefolderpath.iloc[10:110]:
     first=Path(paths[0]);second=first.with_name(f'{int(first.stem)+1:05d}.png')

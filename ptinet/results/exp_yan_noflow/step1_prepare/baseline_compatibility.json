@@ -1,0 +1,16 @@
+{
+  "baseline_snapshot_commit": "15221374aa065429d360c139b806cf79b34b49bb",
+  "evaluation_commit": "fa962404d7f18bee4b47084d0b8ffb4efcc8dfa0",
+  "max_output_differences": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "default_resize_WH": [
+    240,
+    426
+  ],
+  "val_samples": 616,
+  "checkpoint_sha256": "31e6d128c4827d4a7fe881e98e71c13f1af096679157017d3ddc5934fd5dc501"
+}
