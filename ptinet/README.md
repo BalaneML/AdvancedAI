@@ -42,7 +42,7 @@ NVIDIA CUDA の例。Python3.12、git、wget、unzip と対応GPUドライバを
 
 `prepare_jaad.py --phase download` で公開JAAD/RAFTを pinned commit で取得、JAAD_clips.zip と公式raft-things weightsをdownload。`--phase frames --workers 8` は原寸動画を0始まり5桁PNGにcv2で全フレーム抽出（動画ごと並列、各decoder1thread）。`--phase annotations` は公開したtrain242/val69動画IDのみCSV生成。`--phase flow` はCSVに必要な各フレームを公式RAFT-things FP32/iters20で処理。t→t+1、最終フレームは(t−1,t)。入力960×540、flow_viz RGBにalpha255を追加しRGBA PNG同サイズ、4読込/4書込スレッド・中断再開可能。testデータは生成・評価しない。
 
-配置：`data/JAAD/{JAAD_clips,annotations,images,PN_ego/{train,val},opticalflow}`、`third_party/RAFT/{core,models}`。データはgit管理対象外。公開train/valリストとtrain先頭ceil(25%)=61動画リストはsplits/。CSVは絶対パスを生成するので移動時はannotationsを再生成する。
+配置：`data/JAAD/{JAAD_clips,annotations,images,PN_ego/{train,val},opticalflow}`、`third_party/RAFT/{core,models}`。データはgit管理対象外。公開train/valリストとtrain先頭ceil(25%)=61動画リストはsplits/。CSVは絶対パスを生成するので移動時はannotationsを再生成する。full設定の読込順もsplits/*_loading_order.txtに固定し、ファイルシステムの列挙順でVAE乱数と系列の対応が変わらないようにした。動画の分割・学習内容は変わらない。
 
 初回の公開動画archive約3.1GB（回線依存）。過去346動画82032原寸PNGで175.5GB・抽出約9分（8並列）、全67731必要フローの200枚実測換算は約1.92時間。今回はtrain/val311動画なのでこの全量値は上限の目安。archive、画像、フロー、複数runを含め500GB程度の空きを推奨。これらはデータの目安で、repo配布サイズではない。
 
@@ -52,7 +52,7 @@ RX9070XT 16GB、Ryzen7 7700で確認。D1 full/batch2のPyTorch peak allocated �
 
 ## 8. 実行時間
 
-RX9070XT、seed0、22epoch。D1 fullは約8.3時間（epoch約23分）、再学習noflowは6.36時間。縮小設定の軌跡のみ4.44分・軌跡+flow16.66分は画像/LCFなしの別モデルで、full構造の縮小Baseline全学習時間の実測値ではない。縮小Baselineは冒煙1epochの結果を公開確認表に記録する。未測定のfull構造small22epochの時間は断定しない。
+RX9070XT、seed0、22epoch。D1 fullは約8.42時間（epoch約23分）、再学習noflowは6.36時間。縮小設定の軌跡のみ4.44分・軌跡+flow16.66分は画像/LCFなしの別モデルで、full構造の縮小Baseline全学習時間の実測値ではない。縮小Baselineは冒煙1epochの結果を公開確認表に記録する。未測定のfull構造small22epochの時間は断定しない。
 
 ## 9. よくある問題
 
@@ -60,7 +60,7 @@ WSLの `rocm-smi` がamdgpu未初期化でもtorch GPUが動く場合がある�
 
 ## 10. 比較ルール
 
-開発比較はvalidationだけ、testは最後に残す。ADE/FDE(px)、標準F1、Accuracy、Latencyを記録。Latencymodelはbatch1/10warmup/100samples中央値（入力用意・GPU転送を除外、同期あり）。`python tools/benchmark.py --config configs/full.yml --include-raft --output runs/timing.csv` はRAFT別計測と和の参考推定も出す。model LatencyとRAFTを含む推定は列を分け、後者を実測と呼ばない。公平なLeaderboard主列はmodel Latency、RAFT込みはメモ欄。同PC・同設定Baselineを測り、短縮率=100×(Baseline−実験)/Baseline。異なるPCで以前の絶対時間を流用しない。僅差なら複数seed。seed/commit/PC/full-smallを必ず記録。
+開発比較はvalidationだけ、testは最後に残す。ADE/FDE(px)、標準F1、Accuracy、Latencyを記録。Latencymodelはbatch1/10warmup/100samples中央値（入力用意・GPU転送を除外、同期あり）。`python tools/benchmark.py --config configs/full.yml --include-raft --output runs/timing.csv` はRAFT別計測と和の参考推定も出す。公開スクリプトはRAFTも10warmup/100件（過去の参照表はRAFTのみ5warmup/50件）。model LatencyとRAFTを含む推定は列を分け、後者を実測と呼ばない。公平なLeaderboard主列はmodel Latency、RAFT込みはメモ欄。同PC・同設定Baselineを測り、短縮率=100×(Baseline−実験)/Baseline。異なるPCで以前の絶対時間を流用しない。僅差なら複数seed。seed/commit/PC/full-smallを必ず記録。
 
 ## 11. 開発フロー
 

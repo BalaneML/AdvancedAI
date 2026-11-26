@@ -19,7 +19,7 @@ import sys
 from pathlib import Path
 lib=Path(sys.prefix)/'lib/python3.12/site-packages/torch/lib'
 for p in lib.glob('libhsa-runtime64.so*'):
-    if p.is_file() and not p.name.endswith('.bundled_backup'):
+    if not p.name.endswith('.bundled_backup'):
         backup=p.with_name(p.name+'.bundled_backup')
         if backup.exists():raise RuntimeError('Existing runtime backup; inspect before modifying')
         p.rename(backup)

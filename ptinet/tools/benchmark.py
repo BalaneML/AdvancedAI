@@ -18,7 +18,7 @@ def main():
   model_ms=float(np.median(times));raft_ms=0.
   if args.include_raft:
    pairs=[]
-   for paths in data.data.imagefolderpath.iloc[10:60]:
+   for paths in data.data.imagefolderpath.iloc[10:110]:
     first=Path(paths[0]);second=first.with_name(f'{int(first.stem)+1:05d}.png')
     if not second.exists():second=first;first=first.with_name(f'{int(first.stem)-1:05d}.png')
     assert first.exists() and second.exists();pairs.append([str(first),str(second)])

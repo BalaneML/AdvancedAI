@@ -15,6 +15,6 @@ with torch.no_grad():
   tensors=[torch.from_numpy(cv2.cvtColor(cv2.resize(cv2.imread(path),tuple(args.size)),cv2.COLOR_BGR2RGB)).permute(2,0,1).float()[None].cuda() for path in pair]
   padder=InputPadder(tensors[0].shape);a,b=padder.pad(*tensors)
   if index==0:
-   for _ in range(5):net(a,b,iters=20,test_mode=True)
+   for _ in range(10):net(a,b,iters=20,test_mode=True)
   torch.cuda.synchronize();start=time.perf_counter();net(a,b,iters=20,test_mode=True);torch.cuda.synchronize();times.append((time.perf_counter()-start)*1000)
 print(json.dumps({'raft_median_ms':float(np.median(times)),'samples':len(times),'iters':20}))

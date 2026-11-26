@@ -3,6 +3,7 @@ import torchvision.transforms.functional as TF
 import pandas as pd
 from ast import literal_eval
 import glob
+from pathlib import Path
 import os
 import numpy as np
 from PIL import Image, ImageDraw
@@ -161,6 +162,11 @@ class JAAD(torch.utils.data.Dataset):
             df = pd.DataFrame()
             new_index=0
             source_files = glob.glob(os.path.join(data_dir, dtype, '*'))
+            # Preserve the measured sample order across filesystems; do not alter the split.
+            order_path=Path(__file__).resolve().parents[1]/'splits'/('jaad_'+dtype+'_loading_order.txt')
+            if dtype in ('train','val') and order_path.exists():
+                order={v:i for i,v in enumerate(order_path.read_text().splitlines())}
+                source_files=sorted(source_files,key=lambda p:order[Path(p).stem])
             if dtype == 'train' and train_video_fraction < 1:
                 source_files = sorted(source_files)[:math.ceil(len(source_files) * train_video_fraction)]
             self.source_files = list(source_files)
