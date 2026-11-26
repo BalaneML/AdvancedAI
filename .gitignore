@@ -1,0 +1,16 @@
+**/__pycache__/
+**/.matplotlib_cache/
+**/.venv/
+/ptinet/data
+/ptinet/runs
+/ptinet/checkpoints
+/ptinet/third_party
+/ptinet/downloads
+*.pkl
+*.pth
+*.pt
+*.log
+*.mp4
+*.zip
+*.tar
+*.tar.gz

@@ -1,0 +1,5 @@
+run,split,code,input,output,seed,epochs,batch_size,loader_workers,n_samples,ADE,FDE,F1,Accuracy,author_nonstandard_f1
+jaad_full_lcf_out15,test,Original (before corrections),16,15,0,22,2,8,416,11.470735874313574,21.30798349242944,0.0,0.9399038461538461,0.912485414235706
+jaad_full_nolcf_out15,test,Original (before corrections),16,15,0,22,2,8,416,11.840858814808039,21.68721380142065,0.0,0.9399038461538461,0.912485414235706
+jaad_full_lcf_out30,test,Original (before corrections),16,30,0,22,2,8,373,24.113318282221982,49.593798798466494,0.0,0.871313672922252,0.818639798488665
+jaad_full_lcf_out45,test,Original (before corrections),16,45,0,22,2,8,337,54.58501336411835,137.53460097949653,0.0,0.798219584569733,0.7250673854447439
