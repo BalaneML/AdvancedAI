@@ -1,0 +1,11 @@
+{
+  "user_authored_readme_only_permitted_edits": true,
+  "all_readme_images_and_result_directories_exist": true,
+  "numeric_sources_verified": true,
+  "noflow_seed0_reference_passed": true,
+  "single_modality_shapes_smoke_passed": true,
+  "default_full_D1_two_sample_outputs_match_A": true,
+  "benchmark_passed": true,
+  "no_real_TITAN_results": true,
+  "model_runtime_unchanged_in_metadata_followup": true
+}

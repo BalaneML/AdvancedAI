@@ -1,0 +1,2 @@
+名前,改良案,ブランチ,Commit ID,設定（完整／縮小）,seed,PC,ADE,FDE,F1,Accuracy,Latency（ms）,Baseline 比（%）,日付,メモ
+yan,光フロー除去,exp/yan-noflow,b8d73de49eebd449cfa9d0d3864bd2eaa79ae850,完整,0,RX9070XT / Ryzen7 7700 / WSL2,11.61864797538751,22.979535518093154,0,0.8831168831168831,154.05278599996564,21.634058783835215,2026-11-27,validation; exp-yan-noflow-v1 vs baseline-v1; latency=historical model median; cluster CI includes0; F1=0 both; single seed

@@ -1,0 +1,2 @@
+run,split,seed,commit_id,ADE,FDE,F1,Accuracy,PR_AUC,n_samples,checkpoint_sha256
+yan_noflow_full_s0,validation,0,b8d73de49eebd449cfa9d0d3864bd2eaa79ae850,11.61864797538751,22.979535518093154,0.0,0.8831168831168831,0.13876794131591796,616,173038bec1b4ee2a35c4f068c2d1ff9b1ddd6124ebcd6fd8223cf63584975af4

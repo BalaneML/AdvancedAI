@@ -9,9 +9,16 @@
       "local": "4c5d8987392537473907a3ad09e77e6b3d3eb4b3",
       "role": "shared controls",
       "public_evaluated_code": "26de8930037a04a926a170153e772be1217df67f"
+    },
+    {
+      "local": "fa962404d7f18bee4b47084d0b8ffb4efcc8dfa0",
+      "role": "modality batch fix and local noflow training source",
+      "public_evaluated_code": "b8d73de49eebd449cfa9d0d3864bd2eaa79ae850"
     }
   ],
   "D1_training_commit": "pre-git; source snapshot attached",
   "publication_evaluation_commit": "26de8930037a04a926a170153e772be1217df67f",
-  "notes": "Follow-up commit adds evaluation records/provenance and uses wget for public Release downloads. Model, training and evaluation runtime unchanged."
+  "notes": "Follow-up commit adds evaluation records/provenance and uses wget for public Release downloads. Model, training and evaluation runtime unchanged.",
+  "noflow_publication_evaluation_commit": "b8d73de49eebd449cfa9d0d3864bd2eaa79ae850",
+  "experiment_followup": "Only README paths/commit cells and result metadata added; model/runtime unchanged."
 }

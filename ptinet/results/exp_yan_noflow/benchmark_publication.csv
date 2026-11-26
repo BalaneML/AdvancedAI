@@ -1,0 +1,2 @@
+commit_id,batch_size,warmup,samples,model_median_ms,model_p90_ms,raft_median_ms,end_to_end_estimate_ms,Latency_ms,parameters,PC
+b8d73de49eebd449cfa9d0d3864bd2eaa79ae850,1,10,100,203.94549949560314,215.62371449763305,0.0,203.94549949560314,203.94549949560314,20607651,AMD Radeon RX 9070 XT
