@@ -1,0 +1,2 @@
+run,ADE,FDE,F1,Accuracy,seed,split,n_samples,training_commit
+jaad_corr_lcf_out15_s0,12.135504955982233,23.877918536109583,0,0.8831168831168831,0,validation,616,pre-git; snapshot 15221374

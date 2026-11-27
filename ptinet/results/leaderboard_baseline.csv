@@ -1,0 +1,2 @@
+名前,改良案,ブランチ,Commit ID,設定（完整／縮小）,seed,PC,ADE,FDE,F1,Accuracy,Latency（ms）,Baseline 比（%）,日付,メモ
+yan,Baseline corrected,baseline-corrected,26de8930037a04a926a170153e772be1217df67f,完整,0,RX9070XT / Ryzen7 7700 / WSL2,12.135504955982233,23.877918536109583,0,0.8831168831168831,196.5812999999912,0,2026-11-27,validation; baseline-v1; latency=historical model median; D1 training pre-git

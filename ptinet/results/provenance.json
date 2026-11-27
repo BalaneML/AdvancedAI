@@ -1,0 +1,17 @@
+{
+  "local_to_public": [
+    {
+      "local": "15221374aa065429d360c139b806cf79b34b49bb",
+      "role": "pre-git D1 source snapshot, not training commit",
+      "public_evaluated_code": "26de8930037a04a926a170153e772be1217df67f"
+    },
+    {
+      "local": "4c5d8987392537473907a3ad09e77e6b3d3eb4b3",
+      "role": "shared controls",
+      "public_evaluated_code": "26de8930037a04a926a170153e772be1217df67f"
+    }
+  ],
+  "D1_training_commit": "pre-git; source snapshot attached",
+  "publication_evaluation_commit": "26de8930037a04a926a170153e772be1217df67f",
+  "notes": "Follow-up commit adds evaluation records/provenance and uses wget for public Release downloads. Model, training and evaluation runtime unchanged."
+}

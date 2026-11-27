@@ -1,0 +1,14 @@
+[
+  {
+    "run": "jaad_corr_lcf_out15_s0",
+    "asset_name": "D1-baseline-best.pkl",
+    "bytes": 197854853,
+    "sha256": "31e6d128c4827d4a7fe881e98e71c13f1af096679157017d3ddc5934fd5dc501"
+  },
+  {
+    "run": "jaad_corr_nolcf_out15_s0",
+    "asset_name": "D2-nolcf-best.pkl",
+    "bytes": 166028893,
+    "sha256": "79b65bc2c62d25249727a229d00945bb6b0e8671d4f2d7845914c7ffb15ad61c"
+  }
+]

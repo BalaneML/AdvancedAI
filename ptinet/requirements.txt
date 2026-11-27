@@ -1,0 +1,10 @@
+# Install torch/torchvision using scripts/setup_env.sh for the selected GPU platform first.
+numpy==1.26.4
+pandas==3.0.6
+opencv-python-headless==4.11.0.86
+scikit-learn==1.9.1
+scipy==1.17.1
+matplotlib==3.11.2
+PyYAML==6.0.3
+Pillow==13.0.0
+tensorboard==2.21.0
